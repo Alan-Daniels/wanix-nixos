@@ -1,0 +1,45 @@
+{
+  "nodes": {
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1775710090,
+        "narHash": "sha256-ar3rofg+awPB8QXDaFJhJ2jJhu+KqN/PRCXeyuXR76E=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4c1018dae018162ec878d42fec712642d214fdfa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "v86": "v86"
+      }
+    },
+    "v86": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1756349196,
+        "narHash": "sha256-kA6hPEeWgrwWD/fQ2e2oJ86tl2EVwKeFUYaE9F3ZmqA=",
+        "owner": "progrium",
+        "repo": "v86",
+        "rev": "471a76185331a47c013c75f6753efb668fa9c4db",
+        "type": "github"
+      },
+      "original": {
+        "owner": "progrium",
+        "ref": "gh-pkg-docker",
+        "repo": "v86",
+        "type": "github"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
