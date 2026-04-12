@@ -19,7 +19,8 @@
     "root": {
       "inputs": {
         "nixpkgs": "nixpkgs",
-        "v86": "v86"
+        "v86": "v86",
+        "wanix": "wanix"
       }
     },
     "v86": {
@@ -36,6 +37,23 @@
         "owner": "progrium",
         "ref": "gh-pkg-docker",
         "repo": "v86",
+        "type": "github"
+      }
+    },
+    "wanix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1764790976,
+        "narHash": "sha256-iGXPagxh1bAZi5xQpIBi+XPRAf8h+LVAz/IewvEnvkI=",
+        "owner": "tractordev",
+        "repo": "wanix",
+        "rev": "c82e6264ec6c94b051adb28fdf58676b93d7f030",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tractordev",
+        "repo": "wanix",
+        "rev": "c82e6264ec6c94b051adb28fdf58676b93d7f030",
         "type": "github"
       }
     }

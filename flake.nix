@@ -7,12 +7,17 @@
       url = "github:progrium/v86/gh-pkg-docker";
       flake = false;
     };
+    wanix = {
+      url = "github:tractordev/wanix/c82e6264ec6c94b051adb28fdf58676b93d7f030";
+      flake = false;
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     v86,
+    wanix,
   }: let
   in {
     packages."i686-linux" = let
@@ -68,57 +73,9 @@
     packages."x86_64-linux" = let
       system = "x86_64-linux";
       pkgs = import nixpkgs {inherit system;};
-
-      closureCompiler = pkgs.fetchurl {
-        url = "https://repo1.maven.org/maven2/com/google/javascript/closure-compiler/v20210601/closure-compiler-v20210601.jar";
-        hash = "sha256-ZPFhxlo9ukLJpPWnnbM1rA51f8ukhs15KCBaxMJY7wg=";
-      };
     in {
-      v86 = pkgs.stdenv.mkDerivation {
-        name = "v86";
-        src = v86;
-
-        nativeBuildInputs = [
-          pkgs.gnumake
-          pkgs.nodejs
-          pkgs.python3
-          pkgs.jre8
-          pkgs.rustc
-          pkgs.cargo
-          pkgs.lld
-          pkgs.llvmPackages.clang-unwrapped
-        ];
-
-        preBuild = ''
-          # Provide the closure compiler to avoid wget in Makefile
-          mkdir -p closure-compiler
-          cp ${closureCompiler} closure-compiler/compiler.jar
-
-          # Make sure cargo can write its lockfile by copying the source to a writable directory
-          # The derivation automatically unpacks src into a writable directory, so we just need
-          # to ensure cargo target directory is local
-          export CARGO_HOME=$(mktemp -d)
-
-          patchShebangs tools gen
-        '';
-
-        buildFlags = [
-          "build/libv86.js"
-          "build/v86.wasm"
-        ];
-
-        installPhase = ''
-          runHook preInstall
-
-          mkdir -p $out
-          cp build/libv86.js $out/
-          cp build/v86.wasm $out/
-          cp bios/seabios.bin $out/
-          cp bios/vgabios.bin $out/
-
-          runHook postInstall
-        '';
-      };
+      v86 = pkgs.callPackage ./v86.nix {inherit v86;};
+      wanix = pkgs.callPackage ./wanix.nix {inherit wanix;};
       bundle_unzipped = pkgs.runCommand "bundle_unzipped" {} ''
         mkdir -p $out/{kernel,rootfs,v86}
         cp ${self.packages."i686-linux".kernel}/bzImage $out/kernel/
