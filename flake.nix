@@ -64,6 +64,9 @@
           cp ${./init.sh} $out/etc/init.d/rcS
           chmod +x $out/etc/init.d/rcS
 
+          mkdir $out/source
+          cp -r ${./.}/* $out/source/
+
           mkdir -p $out/nix/store
           while read path; do
             cp -a $path $out/nix/store/$(basename $path)
@@ -87,6 +90,13 @@
         mkdir -p $out
         tar -czf $out/bundle.tar.gz -C ${self.packages.${system}.bundle_unzipped} .
       '';
+      test_serve = pkgs.symlinkJoin {
+        name = "test_serve";
+        paths = [
+          self.packages.${system}.bundle
+          self.packages.${system}.wanix
+        ];
+      };
     };
   };
 }

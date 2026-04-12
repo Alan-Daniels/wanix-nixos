@@ -7,16 +7,16 @@ export default async (w) => {
   await w.writeFile("task/1/ctl", `bind . vm/${vm}/fsys`);
   await w.writeFile("task/1/ctl", `bind #bundle/rootfs vm/${vm}/fsys`);
   const cmdline = [
-      "init=/bin/init",
-      "rw",
-      "root=host9p",
-      "rootfstype=9p",
-      `rootflags=trans=virtio,version=9p2000.L,aname=vm/${vm}/fsys,cache=loose`, //msize=524288
+    "init=/bin/init",
+    "rw",
+    "root=host9p",
+    "rootfstype=9p",
+    `rootflags=trans=virtio,version=9p2000.L,aname=vm/${vm}/fsys,cache=loose`, //msize=524288
   ];
   const ctlcmd = ["start", "-m", "1024M", "-append", `'${cmdline.join(" ")}'`];
-  if (w.config.network) {
-      ctlcmd.push("-netdev");
-      ctlcmd.push(`user,type=virtio,relay_url=${w.config.network}`);
+  if (w.config.network && w.config.network != 'none') {
+    ctlcmd.push("-netdev");
+    ctlcmd.push(`user,type=virtio,relay_url=${w.config.network}`);
   }
   await w.writeFile(`vm/${vm}/ctl`, ctlcmd.join(" "));
 };
