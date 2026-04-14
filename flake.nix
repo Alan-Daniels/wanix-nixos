@@ -8,7 +8,7 @@
       flake = false;
     };
     wanix = {
-      url = "github:tractordev/wanix/c82e6264ec6c94b051adb28fdf58676b93d7f030";
+      url = "github:tractordev/wanix";
       flake = false;
     };
   };

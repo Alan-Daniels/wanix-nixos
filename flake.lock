@@ -43,17 +43,16 @@
     "wanix": {
       "flake": false,
       "locked": {
-        "lastModified": 1764790976,
-        "narHash": "sha256-iGXPagxh1bAZi5xQpIBi+XPRAf8h+LVAz/IewvEnvkI=",
+        "lastModified": 1774530359,
+        "narHash": "sha256-vf2aVFExmOD6/iMMcxy7CCgXma3nPLMy9pDg4HU/6xo=",
         "owner": "tractordev",
         "repo": "wanix",
-        "rev": "c82e6264ec6c94b051adb28fdf58676b93d7f030",
+        "rev": "44f753f37865a842f5471f2874994deef30ee83d",
         "type": "github"
       },
       "original": {
         "owner": "tractordev",
         "repo": "wanix",
-        "rev": "c82e6264ec6c94b051adb28fdf58676b93d7f030",
         "type": "github"
       }
     }
