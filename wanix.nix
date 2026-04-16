@@ -68,7 +68,7 @@
     '';
 
     installPhase = ''
-      cp assets/index.html $out/index.html
+      cp ${./index.html} $out/index.html
       cp assets/wanix.css $out/wanix.css
     '';
   };
