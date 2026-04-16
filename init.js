@@ -11,7 +11,8 @@ export default async (w) => {
     "rw",
     "root=host9p",
     "rootfstype=9p",
-    `rootflags=trans=virtio,version=9p2000.L,aname=vm/${vm}/fsys,cache=loose`, //msize=524288
+    `rootflags=trans=virtio,version=9p2000.L,aname=vm/${vm}/fsys,cache=none,msize=8192,access=client`,
+    "ramdisk_size=102400",
   ];
   const ctlcmd = ["start", "-m", "1024M", "-append", `'${cmdline.join(" ")}'`];
   if (w.config.network && w.config.network != 'none') {
